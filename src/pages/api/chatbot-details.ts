@@ -25,15 +25,16 @@ interface ChatbotData {
     widget: ChatbotWidgetData[];
 }
 
-interface ChatbotsApiData {
+export interface ChatbotsApiData {
     data: ChatbotData;
 }
 
 const chatbotsApiHandler: NextApiHandler = (request: NextApiRequest, response: NextApiResponse) => {
     const data: ChatbotsApiData = {
         data: {
-            header: "Chatbots can generate sales",
-            description: "Explore new ways to capture leads and generate more sales. Discover some of our most popular sales chatbots templates:",
+            header: 'Chatbots can generate sales',
+            description:
+                'Explore new ways to capture leads and generate more sales. Discover some of our most popular sales chatbots templates:',
             widget: [
                 {
                     title: 'Discount for new/returning visitors',
@@ -92,7 +93,7 @@ const chatbotsApiHandler: NextApiHandler = (request: NextApiRequest, response: N
                     },
                 },
             ],
-        }
+        },
     };
 
     return response.json(data);
