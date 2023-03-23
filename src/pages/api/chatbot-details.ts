@@ -12,14 +12,14 @@ interface ChatbotImage {
     large: ChatbotImageSize;
 }
 
-interface ChatbotWidgetData {
+export interface ChatbotWidgetData {
     title: string;
     description: string;
     icon: string;
     image: ChatbotImage;
 }
 
-interface ChatbotData {
+export interface ChatbotData {
     header: string;
     description: string;
     widget: ChatbotWidgetData[];

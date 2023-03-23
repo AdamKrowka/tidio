@@ -3,7 +3,7 @@ import AccordionView from '../views/AccordionView/AccordionView';
 import { ChatbotsApiData } from './api/chatbot-details';
 
 const AccordionPage: NextPage<{ data: ChatbotsApiData }> = ({ data }) => {
-    return <AccordionView data={data} />;
+    return <AccordionView data={data.data} />;
 };
 
 export const getStaticProps: GetStaticProps = async () => {

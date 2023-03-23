@@ -11,6 +11,11 @@ const typography = {
             lineHeight: '64px',
             letterSpacing: '-0.03em',
         },
+        H1SM: {
+            fontSize: '40px',
+            lineHeight: '48px',
+            letterSpacing: '-0.03em',
+        },
     },
     content: {
         UI24: {
@@ -23,6 +28,11 @@ const typography = {
             lineHeight: '32px',
             letterSpacing: '-0.01em',
         },
+        UI18: {
+            fontSize: '18px',
+            lineHeight: '24px',
+            letterSpacing: '-0.01em',
+        },
         UI16: {
             fontSize: '16px',
             lineHeight: '24px',
@@ -31,12 +41,19 @@ const typography = {
     },
 };
 
+const breakpoints = {
+    sm: '@media (min-width: 800px)',
+    md: '@media (min-width: 1200px)',
+};
+
 export interface AppTheme {
     color: typeof colors;
     typography: typeof typography;
+    breakpoints: typeof breakpoints;
 }
 
 export const theme: AppTheme = {
     color: colors,
     typography,
+    breakpoints,
 };
