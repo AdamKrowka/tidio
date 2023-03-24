@@ -1,6 +1,5 @@
-import styled from '@emotion/styled';
 import { ChatbotWidgetData } from '../pages/api/chatbot-details';
-import { theme } from '../theme';
+import styled from '@emotion/styled';
 
 const Header = styled.div(({ theme }) => ({
     display: 'flex',
@@ -13,23 +12,40 @@ const Header = styled.div(({ theme }) => ({
             ...theme.typography.content.UI20,
             marginBottom: '10px',
         },
-        p: {
-            ...theme.typography.content.UI16,
-            padding: '0',
+    },
+}));
+
+const Description = styled.p<{ active: boolean }>(({ theme, active }) => ({
+    ...theme.typography.content.UI16,
+    padding: '0',
+    margin: '0',
+    transition: 'all 0.5s',
+    [theme.breakpoints.md]: {
+        maxHeight: active ? '200px' : 0,
+        overflow: 'hidden',
+        '.xDDDD': {
+            background: 'red',
         },
     },
 }));
 
-const AccordionItemStyled = styled.div(({ theme }) => ({
-    backgroundColor: theme.color.GRAY_50,
+const AccordionItemStyled = styled.div<{ active: boolean }>(({ theme, active }) => ({
+    backgroundColor: active ? theme.color.WHITE : theme.color.GRAY_50,
     padding: '24px',
     borderRadius: '16px',
-    boxShadow: 'unset',
+    boxShadow: active ? '0px 2px 8px rgba(0, 27, 71, 0.28)' : 'unset',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     gap: '57px',
     transition: 'all 0.3s',
+    [theme.breakpoints.md]: {
+        backgroundColor: theme.color.WHITE,
+        ':hover': {
+            backgroundColor: theme.color.GRAY_50,
+            cursor: 'pointer',
+        },
+    },
 }));
 
 const Icon = styled.img(() => ({
@@ -51,22 +67,12 @@ export interface AccordionItemProps {
 
 export const AccordionItem = ({ widget, active, onClick }: AccordionItemProps) => {
     return (
-        <AccordionItemStyled
-            onClick={onClick}
-            style={
-                active
-                    ? {
-                          boxShadow: '0px 2px 8px rgba(0, 27, 71, 0.28)',
-                          backgroundColor: theme.color.WHITE,
-                      }
-                    : {}
-            }
-        >
+        <AccordionItemStyled active={active} onClick={onClick}>
             <Header>
                 <Icon src={widget.icon} width={38} height={38} alt={widget.title} />
                 <div>
                     <h2>{widget.title}</h2>
-                    <p>{widget.description}</p>
+                    <Description active={active}>{widget.description}</Description>
                 </div>
             </Header>
             <SmImage active={active}>

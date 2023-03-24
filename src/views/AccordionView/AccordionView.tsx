@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { AccordionItem } from '../../components/accordionItem';
+import AccordionDesktopGallery from '../../components/accordionDesktopGallery';
 import { ChatbotData } from '../../pages/api/chatbot-details';
 
 interface AccordionPageParams {
@@ -14,6 +15,8 @@ const Wrapper = styled.div(({ theme }) => ({
     justifyContent: 'center',
     minHeight: '100vh',
     padding: '80px 14px',
+    maxWidth: '1200px',
+    margin: '0 auto',
     [theme.breakpoints.sm]: {
         padding: '80px 41px',
     },
@@ -49,6 +52,7 @@ const AccordionWrapper = styled.div(({ theme }) => ({
     [theme.breakpoints.md]: {
         display: 'flex',
         gap: '32px',
+        alignItems: 'center',
     },
 }));
 
@@ -61,6 +65,7 @@ const Accordion = styled.div(({ theme }) => ({
     },
     [theme.breakpoints.md]: {
         gap: '16px',
+        flex: '0 0 488px',
     },
 }));
 
@@ -71,6 +76,7 @@ const AccordionView = ({ data }: AccordionPageParams) => {
             <Title>{data.header}</Title>
             <Description>{data.description}</Description>
             <AccordionWrapper>
+                <AccordionDesktopGallery active={active} data={data} />
                 <Accordion>
                     {data.widget.map((widget, index) => (
                         <AccordionItem
